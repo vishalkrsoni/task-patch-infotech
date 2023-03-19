@@ -1,23 +1,32 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+
+import { useMemo, useState, useEffect } from "react";
+import axios from "axios";
 
 export const Testimonial = () => {
 
   const [ testimonialData, setTestimonialData ] = useState([]);
 
+  const memoizedTestimonials = useMemo(() => {
+    return testimonialData.map((testimonial) => ({
+      testimonialID: testimonial.testimonialID,
+      photo: testimonial.photo,
+      name: testimonial.name,
+      post: testimonial.post,
+      description: testimonial.description,
+    }));
+  }, [ testimonialData ]);
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:8080/testimonial');
-        const result = await response.json();
-        setTestimonialData(result.testimonials);
+        const response = await axios.get("http://localhost:8080/testimonial");
+        setTestimonialData(response.data.testimonials);
       } catch (error) {
-        console.log('Error fetching data', error);
+        console.log("Error fetching data", error);
       }
     }
     fetchData();
   }, []);
-
 
   return (
     <div>
@@ -37,8 +46,7 @@ export const Testimonial = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="row testimonial-active">
-
-                {testimonialData.map((testimonial) => (
+                {memoizedTestimonials.map((testimonial) => (
                   <div className="col-lg-4" key={testimonial.testimonialID}>
                     <div className="single-testimonial mt-30 mb-30 text-center">
                       <div className="testimonial-image">
@@ -52,7 +60,6 @@ export const Testimonial = () => {
                     </div>
                   </div>
                 ))}
-
               </div>
             </div>
           </div>
@@ -60,5 +67,6 @@ export const Testimonial = () => {
       </section>
     </div>
   );
-
 }
+
+
