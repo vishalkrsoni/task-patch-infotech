@@ -1,8 +1,8 @@
 const Testimonial = require("../models/testimonial");
-// const mongoose = require("mongoose");
-// const validator = require("validator");
 
-// working
+const cloudinaryParser = require("../middlewares/cloudinaryUploader");
+
+
 const getAllTestimonials = async (req, res) => {
   try {
     let testimonials = await Testimonial.find({});
@@ -19,11 +19,9 @@ const getAllTestimonials = async (req, res) => {
   }
 };
 
-//working
 const addTestimonial = async (req, res) => {
   const { name, photo, post, description } = req.body;
 
-  // Validate input
   if (!name) {
     return res.status(400).json({
       status: "error",
@@ -64,7 +62,6 @@ const addTestimonial = async (req, res) => {
   }
 };
 
-// working
 const softDeleteTestimonialById = async (req, res) => {
   const { testimonialId } = req.params;
   try {
@@ -97,7 +94,7 @@ const softDeleteTestimonialById = async (req, res) => {
   }
 };
 
-//working
+
 const deleteTestimonialById = async (req, res) => {
   const { testimonialId } = req.params;
   try {
