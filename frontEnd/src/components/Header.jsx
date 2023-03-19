@@ -9,7 +9,7 @@ export const Header = () => {
             <div className="col-lg-12">
               <nav className="navbar navbar-expand-lg">
                 <a className="navbar-brand" href="#">
-                  <img src="https://drive.google.com/file/d/1S_VGH_lQ7E8b2xHtAIQjWwBJLXWAC9_p/view?usp=share_link" alt="Logo" />
+                  <img src="../../public/images/logo.svg" alt="Logo" />
                 </a>
                 <button
                   className="navbar-toggler"
@@ -89,7 +89,7 @@ export const Header = () => {
       <div
         id="home"
         className="header-hero bg_cover"
-        style={{ backgroundImage: "url(https://drive.google.com/file/d/1APY53Y3qu8gYO5F4h4v1oXsoRIGT2MLA/view?usp=share_link)" }}
+        style={{ backgroundImage: "url(../../public/images/header-bg.jpg)" }}
       >
         <div className="container">
           <div className="row justify-content-center">
@@ -122,7 +122,7 @@ export const Header = () => {
           </div>
         </div>
         <div className="header-shape">
-          <img src="https://drive.google.com/file/d/1oqmGD3PqQVCWtOQMyrqGWWQ-1EURP3mH/view?usp=share_link" alt="shape" />
+          <img src="../../public/images//header-shape.svg" alt="shape" />
         </div>
       </div>
     </header>
