@@ -5,7 +5,11 @@ const cloudinaryParser = require("../middlewares/cloudinaryUploader");
 
 const getAllTestimonials = async (req, res) => {
   try {
-    let testimonials = await Testimonial.find({});
+
+    let testimonials = await Testimonial.find(
+      {},
+      { photo: 1, name: 1, testimonialID: 1, post: 1, description: 1 }
+    );
     res.send({
       status: "Details fetched successfully",
       total: testimonials.length,
