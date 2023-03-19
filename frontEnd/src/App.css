@@ -1,0 +1,20 @@
+.single-testimonial {
+  /* padding: 2rem 1rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.testimonial-item {
+  margin-left: 10px;
+  padding: 8px;
+}
+.testimonial-image {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+}
+.testimonial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
