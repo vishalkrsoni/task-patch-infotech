@@ -2,12 +2,10 @@ const Testimonial = require("../models/testimonial");
 
 const cloudinaryParser = require("../middlewares/cloudinaryUploader");
 
-
 const getAllTestimonials = async (req, res) => {
   try {
-
     let testimonials = await Testimonial.find(
-      {},
+      { active: true },
       { photo: 1, name: 1, testimonialID: 1, post: 1, description: 1 }
     );
     res.send({
@@ -19,6 +17,7 @@ const getAllTestimonials = async (req, res) => {
     res.send({
       status: "error fetching details",
       message: err,
+      err,
     });
   }
 };
@@ -35,7 +34,9 @@ const addTestimonial = async (req, res) => {
   try {
     const totaltestimonials = await Testimonial.find({});
     const testimonialID =
-      totaltestimonials[totaltestimonials.length - 1].testimonialID + 1;
+      totaltestimonials.length != 0
+        ? totaltestimonials[totaltestimonials.length - 1].testimonialID + 1
+        : 1;
 
     const newTestimonial = await Testimonial.create({
       testimonialID,
@@ -97,7 +98,6 @@ const softDeleteTestimonialById = async (req, res) => {
     });
   }
 };
-
 
 const deleteTestimonialById = async (req, res) => {
   const { testimonialId } = req.params;
