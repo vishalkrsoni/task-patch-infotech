@@ -1,6 +1,6 @@
 const Testimonial = require("../models/testimonial");
 
-const cloudinaryParser = require("../middlewares/cloudinaryUploader");
+const cloudinary = require("../config/cloudinaryConfig");
 
 const getAllTestimonials = async (req, res) => {
   try {
@@ -23,6 +23,7 @@ const getAllTestimonials = async (req, res) => {
 };
 
 const addTestimonial = async (req, res) => {
+  // let imageUrl = await req.file.location;
   const { name, photo, post, description } = req.body;
 
   if (!name) {
@@ -31,6 +32,7 @@ const addTestimonial = async (req, res) => {
       message: "Missing required fields. Please provide name",
     });
   }
+
   try {
     const totaltestimonials = await Testimonial.find({});
     const testimonialID =
@@ -41,6 +43,7 @@ const addTestimonial = async (req, res) => {
     const newTestimonial = await Testimonial.create({
       testimonialID,
       name,
+      // photo:imageUrl,
       photo,
       post,
       description,

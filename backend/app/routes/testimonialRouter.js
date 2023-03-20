@@ -8,9 +8,14 @@ const {
   softDeleteTestimonialById,
   deleteTestimonialById,
 } = require("../controllers/testimonialController");
+const {uploadImageTos3}  = require("../services/uploadToS3");
 
 
+
+// testimonialRouter.post("/", uploadImageTos3.single("file"), addTestimonial);
 testimonialRouter.post("/", addTestimonial);
+
+
 
 
 testimonialRouter.get("/", getAllTestimonials);
